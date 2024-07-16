@@ -1,19 +1,8 @@
 swagger: '2.0'
 info:
   title: Bank Argent API documentation
-  description: |- 
-    Contains all API endpoints and schemes in this codebase
-    **Transactions module is not implemented yet**
-    ## User Module
-    * Login for user
-    * Signup for user
-    * Get user profile
-    * Update user profile
-    ## Transactions Module
-    * Get all transactions for a user
-    * Get a specific transaction for a user
-    * Update category and/or notes for a specific transaction
-  version: 'alpha 1.1.0'
+  description: Contains all available API endpoints in this codebase
+  version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
 host: localhost:3001
 basePath: /api/v1
@@ -81,7 +70,6 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
-          type: string
       produces:
         - application/json
       responses:
@@ -105,7 +93,6 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
-          type: string
         - in: body
           name: body
           description: Update user profile attributes
@@ -123,103 +110,6 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /transactions:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: Transactions API
-      description: API for fetching transactions for an user
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Transactions retrieved Successfully
-          schema:
-            $ref: '#/definitions/Transaction'
-        '400':
-          description: Invalid Fields
-        '401':
-          description: Invalid token / Unauthorized
-        '500':
-          description: Internal Server Error
-  /transactions/{transactionId}:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: Transaction API
-      description: API for fetching a transaction
-      produces:
-        - application/json
-      parameters:
-        - in: header
-          type: string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-        - in: path
-          type: integer
-          name: transactionId
-          required: true
-          description: Numeric ID of the transaction
-      responses:
-        '200':
-          description: User transaction retrieved successfully
-          schema:
-            $ref: '#/definitions/Transaction'
-        '400':
-          description: Invalid Fields
-        '401':
-          description: Invalid token / Unauthorized
-        '500':
-          description: Internal Server Error
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: Transaction API
-      description: API for updating a transaction
-      produces:
-        - application/json
-      parameters:
-        - in: header
-          type: string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-        - in: path
-          type: integer
-          name: transactionId
-          required: true
-          description: Numeric ID of the transaction
-        - in: body
-          name: body
-          description: Transaction update Payload
-          required: true
-          schema:
-            $ref: '#/definitions/TransactionsUpdate'
-      responses:
-        '200':
-          description: User transaction updates and retrieved successfully
-          schema:
-            $ref: '#/definitions/Transaction'
-        '400':
-          description: Invalid Fields
-        '401':
-          description: Invalid token / Unauthorized
-        '500':
-          description: Internal Server Error
-
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -273,35 +163,4 @@ definitions:
       firstName:
         type: string
       lastName:
-        type: string
-  Transaction:
-    type: object
-    properties:
-      id:
-        type: string
-      amount:
-        type: number
-      balance:
-        type: number
-      description:
-        type: string
-      type:
-        type: string
-      date:
-        type: string
-        format: date
-      categorie:
-        type: integer
-        format: int64
-      note:
-        type: string
-  TransactionsUpdate:
-    type: object
-    properties:
-      id:
-        type: string
-      categorie:
-        type: integer
-        format: int64
-      note:
         type: string

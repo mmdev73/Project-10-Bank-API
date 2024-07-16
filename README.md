@@ -49,7 +49,7 @@ Once you run the `populate-db` script, you should have two users in your databas
 
 - First Name: `Tony`
 - Last Name: `Stark`
-- Email: `tony@stark.com`
+- Email: `tony@stark.com` 
 - Password: `password123`
 
 ### Steve Rogers
