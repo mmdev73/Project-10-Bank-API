@@ -150,7 +150,7 @@ paths:
           description: Invalid token / Unauthorized
         '500':
           description: Internal Server Error
-  /transactions/{transactionId}:
+  /transactions/{accountId}/{transactionId}:
     post:
       security:
         - Bearer: []
@@ -166,6 +166,11 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+        - in: path
+          type: integer
+          name: transactionId
+          required: true
+          description: Numeric ID of the account link tyo the transaction
         - in: path
           type: integer
           name: transactionId
@@ -197,6 +202,11 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+        - in: path
+          type: integer
+          name: transactionId
+          required: true
+          description: Numeric ID of the account link tyo the transaction
         - in: path
           type: integer
           name: transactionId
