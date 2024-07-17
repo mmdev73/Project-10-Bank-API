@@ -1,6 +1,4 @@
 const Transaction = require('../database/models/transactionModel')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken') 
 
 module.exports.addTransaction = async (serviceData) => {
   try {
@@ -26,6 +24,21 @@ module.exports.getAllTransactions = async (accountId) => {
   try {
     const transactions = await Transaction.find( { accountId: accountId } )
     return transactions
+  } catch (error) {
+    console.error('Error in transactionService.js', error)
+    throw new Error(error)
+  }
+}
+
+module.exports.updateTransaction = async (accountId, transactionId, serviceData) => {
+  console.log(accountId, transactionId, serviceData)
+  try {
+    const updatedTransaction = await Transaction.findOneAndUpdate(
+      { accountId: accountId, _id: transactionId },
+      serviceData,
+      { new: true }
+    )
+    return updatedTransaction
   } catch (error) {
     console.error('Error in transactionService.js', error)
     throw new Error(error)

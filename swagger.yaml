@@ -168,9 +168,9 @@ paths:
           required: true
         - in: path
           type: integer
-          name: transactionId
+          name: accountId
           required: true
-          description: Numeric ID of the account link tyo the transaction
+          description: Numeric ID of the account link to the transaction
         - in: path
           type: integer
           name: transactionId
@@ -204,9 +204,9 @@ paths:
           required: true
         - in: path
           type: integer
-          name: transactionId
+          name: accountId
           required: true
-          description: Numeric ID of the account link tyo the transaction
+          description: Numeric ID of the account link to the transaction
         - in: path
           type: integer
           name: transactionId
@@ -308,10 +308,7 @@ definitions:
   TransactionsUpdate:
     type: object
     properties:
-      id:
-        type: string
       categorie:
-        type: integer
-        format: int64
+        type: string
       note:
         type: string

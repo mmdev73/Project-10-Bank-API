@@ -34,6 +34,23 @@ module.exports.getAllTransactions = async (req, res) => {
   return res.status(response.status).send(response)
 }
 
+module.exports.updateTransaction = async (req, res) => {
+  let response = {}
+  try {
+    const accountId = req.params.accountId
+    const transactionId = req.params.transactionId
+    const responseFromService = await transactionService.updateTransaction(accountId, transactionId, req.body)
+    response.status = 200
+    response.message = 'Successfully updated transaction'
+    response.body = responseFromService
+  } catch (error) {
+    console.log('Error in transactionController.js')
+    response.status = 400
+    response.message = error.message
+  }
+
+  return res.status(response.status).send(response)
+}
 module.exports.deleteAllTransactions = async (req, res) => {
   try {
     const responseFromService = await transactionService.deleteAllTransactions()

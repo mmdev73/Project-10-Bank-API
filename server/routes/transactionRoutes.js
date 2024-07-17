@@ -12,15 +12,17 @@ router.post('/:accountId',
   transactionController.getAllTransactions
 )
 
+router.put(
+  '/:accountId/:transactionId',
+  tokenValidation.validateToken,
+  transactionController.updateTransaction
+)
+
 //router.post('/:accountId/:transactionId',
 //  tokenValidation.validateToken,
 //  transactionController.getTransactionById
 //)
 //
-//router.put(
-//  '/:accountId/:transactionId',
-//  tokenValidation.validateToken,
-//  transactionController.updateTransaction
-//)
+
 
 module.exports = router
