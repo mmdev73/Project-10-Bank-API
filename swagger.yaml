@@ -123,7 +123,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /transactions:
+  /transactions/{accountId}:
     post:
       security:
         - Bearer: []
@@ -137,6 +137,11 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
+        - in: path
+          type: integer
+          name: accountId
+          required: true
+          description: Numeric ID of the account link to the transaction
       produces:
         - application/json
       responses:
